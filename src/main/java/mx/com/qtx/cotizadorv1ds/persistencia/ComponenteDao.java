@@ -21,7 +21,7 @@ public class ComponenteDao implements IGestorPersistenciaComponentes {
     private final String url;
     private final String user;
     private final String password;
-
+    
     public ComponenteDao(String url, String user, String password) {
         this.url = url;
         this.user = user;
@@ -35,7 +35,19 @@ public class ComponenteDao implements IGestorPersistenciaComponentes {
         this.password = "root";
 	}
 
-	private Connection getConnection() throws SQLException {
+	public String getUrl() {
+		return url;
+	}
+
+	public String getUser() {
+		return user;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public Connection getConnection() throws SQLException {
         return DriverManager.getConnection(url, user, password);
     }
     

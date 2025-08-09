@@ -96,4 +96,8 @@ public class Pc extends Componente {
 		                   .forEach(tarI-> { tarI.mostrarCaracteristicas(); 
 		                   		             System.out.println();});
 	}
+
+	public List<ComponenteSimple> getSubComponentes() {
+		return this.subComponentes;
+	}
 }
