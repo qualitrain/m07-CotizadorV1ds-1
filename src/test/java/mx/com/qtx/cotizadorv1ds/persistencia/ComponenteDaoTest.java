@@ -11,6 +11,8 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
@@ -134,6 +136,7 @@ class ComponenteDaoTest {
 	}
 
 	@Test
+	@Tag("CRUD_Componente")
 	void testGetComponenteDtoXID() throws SQLException {
 		assumeTrue(bdOperable);
 		
@@ -151,6 +154,7 @@ class ComponenteDaoTest {
 	}
 
 	@Test
+	@Tag("CRUD_Componente")
 	void testInsertarComponenteDto() throws SQLException {
 		assumeTrue(bdOperable);
 		
@@ -186,11 +190,14 @@ class ComponenteDaoTest {
 	}
 
 	@Test
+	@Tag("CRUD_Componente")
+	@Disabled
 	void testActualizarComponenteDto() {
 		fail("Not yet implemented");
 	}
 
 	@Test
+	@Tag("CRUD_Componente")
 	void testEliminarComponenteDto() {
 		fail("Not yet implemented");
 	}

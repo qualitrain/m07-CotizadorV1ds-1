@@ -15,6 +15,10 @@ public abstract class PromAcumulable extends Promocion {
 		this.promoBase = promoBase;
 	}
 
+	Promocion getPromoBase() {
+		return promoBase;
+	}
+
 
 	/**
 	 * 

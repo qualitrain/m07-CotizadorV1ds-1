@@ -11,6 +11,8 @@ import java.util.Map;
  */
 public class PromocionBuilder {
 
+	public static final float DSCTO_MAX = 79.0f;
+	
 	static final int PROM_BASE_SIN_DSCTO = 1;
 	static final int PROM_BASE_NXM = 2;
 	private int tipoPromocionBase;
@@ -76,6 +78,12 @@ public class PromocionBuilder {
 	 * @param procDscto
 	 */
 	public PromocionBuilder agregarDsctoPlano(float porcDscto){
+		if(porcDscto <= 0 ) {
+			throw new IllegalArgumentException("Descto debe ser mayor a cero");
+		}
+		if(porcDscto > DSCTO_MAX) {
+			throw new IllegalArgumentException("Descto supera el máximo permitido");
+		}
 		this.lstDsctosPlanos.add(porcDscto);
 		return this;
 

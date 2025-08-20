@@ -102,6 +102,12 @@ public abstract class Componente {
 
 	public static Componente crearPc(String id, String descripcion, String marca, String modelo, 
 			List<Componente> subComponentes) {
+		if(subComponentes == null) {
+			throw new EstructuraComponenteInvalidaException("lista de subcomponentes es nula");
+		}
+		if(subComponentes.size() == 0) {
+			throw new EstructuraComponenteInvalidaException("lista de subcomponentes está vacía");
+		}
 		List<ComponenteSimple> lstDispositivos = subComponentes.stream()
 				                                          .filter(cmpI->(cmpI instanceof ComponenteSimple))
 		                                                  .map(dispI -> (ComponenteSimple) dispI)
