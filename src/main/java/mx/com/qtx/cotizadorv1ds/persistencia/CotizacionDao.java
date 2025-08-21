@@ -3,9 +3,9 @@ package mx.com.qtx.cotizadorv1ds.persistencia;
 import java.sql.*;
 import java.util.*;
 
-import mx.com.qtx.cotizadorv1ds.servicios.CotizacionDTO;
-import mx.com.qtx.cotizadorv1ds.servicios.DetalleCotizacionDTO;
 import mx.com.qtx.cotizadorv1ds.servicios.IGestorPersistenciaCotizaciones;
+import mx.com.qtx.cotizadorv1ds.servicios.dtos.CotizacionDTO;
+import mx.com.qtx.cotizadorv1ds.servicios.dtos.DetalleCotizacionDTO;
 
 import java.math.BigDecimal;
 

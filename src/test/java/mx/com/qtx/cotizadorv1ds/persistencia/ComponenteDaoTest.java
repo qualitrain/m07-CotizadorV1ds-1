@@ -26,7 +26,7 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import mx.com.qtx.cotizadorv1ds.servicios.ComponenteDTO;
+import mx.com.qtx.cotizadorv1ds.servicios.dtos.ComponenteDTO;
 
 class ComponenteDaoTest {
 	private static boolean bdOperable = false;

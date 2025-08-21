@@ -12,11 +12,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
-import mx.com.qtx.cotizadorv1ds.servicios.ComponenteDTO;
-import mx.com.qtx.cotizadorv1ds.servicios.DetallePromoDsctoXCantDTO;
-import mx.com.qtx.cotizadorv1ds.servicios.DetallePromocionDTO;
 import mx.com.qtx.cotizadorv1ds.servicios.IGestorPersistenciaComponentes;
-import mx.com.qtx.cotizadorv1ds.servicios.PromocionDTO;
+import mx.com.qtx.cotizadorv1ds.servicios.dtos.ComponenteDTO;
+import mx.com.qtx.cotizadorv1ds.servicios.dtos.DetallePromoDsctoXCantDTO;
+import mx.com.qtx.cotizadorv1ds.servicios.dtos.DetallePromocionDTO;
+import mx.com.qtx.cotizadorv1ds.servicios.dtos.PromocionDTO;
 
 public class ComponenteDao implements IGestorPersistenciaComponentes {
     private final String url;

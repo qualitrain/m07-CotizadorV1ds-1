@@ -7,13 +7,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Component;
+
 import mx.com.qtx.cotizadorv1ds.core.ICotizador;
 import mx.com.qtx.cotizadorv1ds.core.componentes.Componente;
 import mx.com.qtx.cotizadorv1ds.core.cotizaciones.ComponenteInvalidoException;
 import mx.com.qtx.cotizadorv1ds.core.cotizaciones.Cotizacion;
 import mx.com.qtx.cotizadorv1ds.core.cotizaciones.DetalleCotizacion;
 import mx.com.qtx.cotizadorv1ds.persistencia.CotizacionDao;
+import mx.com.qtx.cotizadorv1ds.servicios.dtos.CotizacionDTO;
+import mx.com.qtx.cotizadorv1ds.servicios.dtos.DetalleCotizacionDTO;
 
+//@Component
 public class CotizadorPersistente implements ICotizador {
 	private Map<Componente,Integer> mapCompsYcants;
 	private IGestorPersistenciaCotizaciones gestorPersistencia;

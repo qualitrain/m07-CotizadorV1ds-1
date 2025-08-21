@@ -11,6 +11,9 @@ import mx.com.qtx.cotizadorv1ds.core.componentes.PcBuilder;
 import mx.com.qtx.cotizadorv1ds.core.promos.Promocion;
 import mx.com.qtx.cotizadorv1ds.core.promos.PromocionBuilder;
 import mx.com.qtx.cotizadorv1ds.persistencia.ComponenteDao;
+import mx.com.qtx.cotizadorv1ds.servicios.dtos.ComponenteDTO;
+import mx.com.qtx.cotizadorv1ds.servicios.dtos.DetallePromoDsctoXCantDTO;
+import mx.com.qtx.cotizadorv1ds.servicios.dtos.DetallePromocionDTO;
 
 public class GestorComponentes implements IServicioComponentes {
 	
