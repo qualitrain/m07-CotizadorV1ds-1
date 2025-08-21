@@ -62,6 +62,13 @@ public class Cotizador implements ICotizador{
             		 + ": $" + c.getPrecioBase() + " ID:" + c.getId());        	
         }
     }
+	
+	Componente getComponenteCotizado(String idComponente) {
+		return this.componentes.stream()
+				               .filter(compI->compI.getId().equals(idComponente))
+				               .findFirst()
+				               .get();
+	}
 
 	@Override
 	public Cotizacion getCotizacionXID(long id) {
