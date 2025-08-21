@@ -6,6 +6,10 @@ import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.math.BigDecimal;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Stream;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -14,7 +18,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 import org.junit.jupiter.api.function.Executable;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.NullSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import mx.com.qtx.cotizadorv1ds.servicios.ComponenteDTO;
 
@@ -33,6 +43,11 @@ class ComponenteDaoTest {
     		bdOperable = true;
     		dto = getComponenteDtoTest();
     		dao.insertarComponenteDto(dto);
+    	}
+    	catch(SQLIntegrityConstraintViolationException sicvex) {
+    		System.out.println(sicvex.getClass().getName() + ":[" + sicvex.getMessage() + "]");
+    		bdOperable = true;
+    		return;
     	}
     	catch(Exception ex) {
     		System.out.println(ex.getClass().getName() + ":[" + ex.getMessage() + "]");
@@ -152,9 +167,23 @@ class ComponenteDaoTest {
 		assertEquals(dtoLocal.getIdComponente(), dto.getIdComponente());
 		//Otros asserts
 	}
+	
+	@ParameterizedTest(name="Prueba num {index} - valor probado:[{0}]")
+	@NullAndEmptySource
+	@ValueSource(strings= {"\n\n","\t\t","\t \n","      "})
+	void testGetComponenteDtoXID_IdInvalido(String idComponente) throws SQLException {
+		//Dados
+		assumeTrue(bdOperable);
+		//Cuando
+		Executable lectura = ()->daoLocal.getComponenteDtoXID(idComponente);
+		
+		//Entonces
+		assertThrows(IllegalArgumentException.class, lectura, "No lanza IllegalArgumentException");
+	}
 
 	@Test
 	@Tag("CRUD_Componente")
+	@Timeout(value = 100, unit = TimeUnit.MILLISECONDS)
 	void testInsertarComponenteDto() throws SQLException {
 		assumeTrue(bdOperable);
 		
@@ -207,10 +236,23 @@ class ComponenteDaoTest {
 		fail("Not yet implemented");
 	}
 
-	@Test
-	void testGetPromocionXID() {
-		fail("Not yet implemented");
+	@ParameterizedTest(name = "Prueba {index} con id=[{0}]")
+	@MethodSource("getIdsPromoInvalidos")
+	@NullSource
+	void testGetPromocionXID_IdInvalido(Long idPromo) {
+		//Dados
+		assumeTrue(bdOperable);
+		//Cuando
+		Executable lectura = ()->daoLocal.getPromocionXID(idPromo);
+		
+		//Entonces
+		assertThrows(IllegalArgumentException.class, lectura, "No lanza IllegalArgumentException");
 	}
+	
+ 	public static Stream<Long> getIdsPromoInvalidos(){
+ 		return List.of(0L, -1L, -5L).stream();
+ 	}
+    
 
 	@Test
 	void testGetDetallesPromocion() {

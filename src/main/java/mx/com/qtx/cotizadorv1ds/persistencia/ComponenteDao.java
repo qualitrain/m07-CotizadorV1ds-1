@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 
 import mx.com.qtx.cotizadorv1ds.servicios.ComponenteDTO;
 import mx.com.qtx.cotizadorv1ds.servicios.DetallePromoDsctoXCantDTO;
@@ -53,6 +54,12 @@ public class ComponenteDao implements IGestorPersistenciaComponentes {
     
 	@Override
     public ComponenteDTO getComponenteDtoXID(String id) throws SQLException {
+		if(id == null) {
+			throw new IllegalArgumentException("idComponente es nulo");
+		}
+		if(id.isBlank()) {
+			throw new IllegalArgumentException("idComponente esta formado de blancos");
+		}
         String sql = "SELECT * FROM componente WHERE id_componente = ?";
         try (Connection conn = getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -155,6 +162,12 @@ public class ComponenteDao implements IGestorPersistenciaComponentes {
     
  	@Override
     public PromocionDTO getPromocionXID(Long numPromocion) throws SQLException {
+ 		if(numPromocion == null) {
+ 			throw new IllegalArgumentException("id es nulo");
+ 		}
+ 		if(numPromocion.longValue() <= 0) {
+ 			throw new IllegalArgumentException("id es menor o igual a Cero");
+ 		}
         String sql = "SELECT * FROM promocion WHERE num_promocion = ?";
         try (Connection conn = getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -173,7 +186,7 @@ public class ComponenteDao implements IGestorPersistenciaComponentes {
             }
         }
     }
-    
+ 	
  	@Override
     public List<DetallePromocionDTO> getDetallesPromocion(Long numPromocion) throws SQLException {
         String sql = "SELECT * FROM detalle_promocion WHERE num_promocion = ?";
