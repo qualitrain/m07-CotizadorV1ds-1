@@ -10,7 +10,8 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Stream;
+
+import org.springframework.stereotype.Repository;
 
 import mx.com.qtx.cotizadorv1ds.servicios.IGestorPersistenciaComponentes;
 import mx.com.qtx.cotizadorv1ds.servicios.dtos.ComponenteDTO;
@@ -18,6 +19,7 @@ import mx.com.qtx.cotizadorv1ds.servicios.dtos.DetallePromoDsctoXCantDTO;
 import mx.com.qtx.cotizadorv1ds.servicios.dtos.DetallePromocionDTO;
 import mx.com.qtx.cotizadorv1ds.servicios.dtos.PromocionDTO;
 
+@Repository
 public class ComponenteDao implements IGestorPersistenciaComponentes {
     private final String url;
     private final String user;
