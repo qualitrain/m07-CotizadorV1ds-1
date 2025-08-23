@@ -1,5 +1,11 @@
 package mx.com.qtx.cotizadorv1ds.casosDeUso;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+
 import mx.com.qtx.cotizadorv1ds.core.ICotizador;
 import mx.com.qtx.cotizadorv1ds.core.IServicioComponentes;
 import mx.com.qtx.cotizadorv1ds.core.componentes.Componente;
@@ -7,16 +13,26 @@ import mx.com.qtx.cotizadorv1ds.core.cotizaciones.Cotizacion;
 import mx.com.qtx.cotizadorv1ds.servicios.CotizadorPersistente;
 import mx.com.qtx.cotizadorv1ds.servicios.GestorComponentes;
 
-public class CotizadorBDTest {
+@Component
+public class ProbadorCotizadorBD implements CommandLineRunner{
+	
+	private static Logger bitacora = LoggerFactory.getLogger(ProbadorCotizadorBD.class);
+	@Autowired
+	ICotizador cotizador;
+	
+	@Autowired
+	IServicioComponentes gestorComponentes;
 
 	public static void main(String[] args) {
-		testGenerarCotizacion();
+//		testGenerarCotizacion();
 
 	}
 
-	private static void testGenerarCotizacion() {
-		ICotizador cotizador = getCotizadorActual();
-		IServicioComponentes gestorComponentes = getServicioComponentes();
+	private void testGenerarCotizacion() {
+//		ICotizador cotizador = getCotizadorActual();
+//		IServicioComponentes gestorComponentes = getServicioComponentes();
+		
+		bitacora.info("ICotizador:" +  this.cotizador.getClass().getName());
 		
 		Componente monitor = gestorComponentes.getComponenteXID("MON01");
 		cotizador.agregarComponente(10, monitor);
@@ -42,6 +58,8 @@ public class CotizadorBDTest {
 		System.out.println("\n COTIZACION EN BD: \n");
 		
 		long idCotizacion = cotizacion.getNum();
+		bitacora.info("idCotizacion:" +idCotizacion);
+		
 		Cotizacion cotBd = cotizador.getCotizacionXID(idCotizacion);
 		cotBd.emitirComoReporte();
 	}
@@ -54,6 +72,12 @@ public class CotizadorBDTest {
 	private static ICotizador getCotizadorActual() {
 		ICotizador cotizador = new CotizadorPersistente();
 		return cotizador;
+	}
+
+	@Override
+	public void run(String... args) throws Exception {
+		testGenerarCotizacion();
+		
 	}
 
 }

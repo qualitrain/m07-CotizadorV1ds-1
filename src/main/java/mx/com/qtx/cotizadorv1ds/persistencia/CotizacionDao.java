@@ -3,14 +3,20 @@ package mx.com.qtx.cotizadorv1ds.persistencia;
 import java.sql.*;
 import java.util.*;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Repository;
+
 import mx.com.qtx.cotizadorv1ds.servicios.IGestorPersistenciaCotizaciones;
 import mx.com.qtx.cotizadorv1ds.servicios.dtos.CotizacionDTO;
 import mx.com.qtx.cotizadorv1ds.servicios.dtos.DetalleCotizacionDTO;
 
 import java.math.BigDecimal;
 
+@Repository
 public class CotizacionDao implements IGestorPersistenciaCotizaciones {
-    private final String url;
+	
+	@Value("${miapp.bd.url}")
+    private String url;
     private final String user;
     private final String password;
 
@@ -22,7 +28,7 @@ public class CotizacionDao implements IGestorPersistenciaCotizaciones {
     
      public CotizacionDao() {
 		super();
-        this.url = "jdbc:mysql://localhost:3306/bd_cotizaciones?useSSL=false&serverTimezone=UTC";
+//        this.url = "jdbc:mysql://localhost:3306/bd_cotizaciones?useSSL=false&serverTimezone=UTC";
         this.user = "root";
         this.password = "root";
 	}

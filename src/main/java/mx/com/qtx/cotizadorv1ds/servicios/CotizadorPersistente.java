@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -20,14 +22,18 @@ import mx.com.qtx.cotizadorv1ds.servicios.dtos.CotizacionDTO;
 import mx.com.qtx.cotizadorv1ds.servicios.dtos.DetalleCotizacionDTO;
 
 @Service
+@Primary
 public class CotizadorPersistente implements ICotizador {
+	
 	private Map<Componente,Integer> mapCompsYcants;
+	
+	@Autowired
 	private IGestorPersistenciaCotizaciones gestorPersistencia;
 
 	public CotizadorPersistente() {
 		super();
 		this.mapCompsYcants = new HashMap<>();
-		this.gestorPersistencia = new CotizacionDao();
+//		this.gestorPersistencia = new CotizacionDao();
 	}
 
 	@Override

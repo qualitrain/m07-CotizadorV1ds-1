@@ -11,6 +11,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
 import mx.com.qtx.cotizadorv1ds.servicios.IGestorPersistenciaComponentes;
@@ -21,7 +22,9 @@ import mx.com.qtx.cotizadorv1ds.servicios.dtos.PromocionDTO;
 
 @Repository
 public class ComponenteDao implements IGestorPersistenciaComponentes {
-    private final String url;
+	
+	@Value("${miapp.bd.url}")
+    private String url;
     private final String user;
     private final String password;
     
@@ -33,7 +36,7 @@ public class ComponenteDao implements IGestorPersistenciaComponentes {
 
     public ComponenteDao() {
 		super();
-        this.url = "jdbc:mysql://localhost:3306/bd_cotizaciones?useSSL=false&serverTimezone=UTC";
+//      this.url = "jdbc:mysql://localhost:3306/bd_cotizaciones?useSSL=false&serverTimezone=UTC";
         this.user = "root";
         this.password = "root";
 	}

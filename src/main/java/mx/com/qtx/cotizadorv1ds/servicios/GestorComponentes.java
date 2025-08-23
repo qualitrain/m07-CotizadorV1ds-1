@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import mx.com.qtx.cotizadorv1ds.core.IServicioComponentes;
@@ -20,11 +21,12 @@ import mx.com.qtx.cotizadorv1ds.servicios.dtos.DetallePromocionDTO;
 @Service
 public class GestorComponentes implements IServicioComponentes {
 	
+	@Autowired
 	private IGestorPersistenciaComponentes gestorPersistencia;
 
 	public GestorComponentes() {
 		super();
-		this.gestorPersistencia = new ComponenteDao();
+//		this.gestorPersistencia = new ComponenteDao();
 	}
 
 	@Override
