@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import org.springframework.stereotype.Service;
+
 import mx.com.qtx.cotizadorv1ds.core.IServicioComponentes;
 import mx.com.qtx.cotizadorv1ds.core.componentes.Componente;
 import mx.com.qtx.cotizadorv1ds.core.componentes.PcBuilder;
@@ -15,6 +17,7 @@ import mx.com.qtx.cotizadorv1ds.servicios.dtos.ComponenteDTO;
 import mx.com.qtx.cotizadorv1ds.servicios.dtos.DetallePromoDsctoXCantDTO;
 import mx.com.qtx.cotizadorv1ds.servicios.dtos.DetallePromocionDTO;
 
+@Service
 public class GestorComponentes implements IServicioComponentes {
 	
 	private IGestorPersistenciaComponentes gestorPersistencia;

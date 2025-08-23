@@ -11,7 +11,10 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.context.annotation.Bean;
 
 import mx.com.qtx.cotizadorv1ds.servicios.dtos.ComponenteDTO;
 
@@ -19,6 +22,7 @@ import mx.com.qtx.cotizadorv1ds.servicios.dtos.ComponenteDTO;
 class IGestorPersistenciaComponentesTest {
 	
 	@Autowired
+	@Qualifier("beanGestorDatosTest")
 	IGestorPersistenciaComponentes gestorPersistencia;
 	
 	private static Logger bitacora = LoggerFactory.getLogger(IGestorPersistenciaComponentesTest.class);	
@@ -74,6 +78,13 @@ class IGestorPersistenciaComponentesTest {
 		dto.setTipo("DiscoDuro");
 		return dto;
 	}
-
+	
+	@TestConfiguration
+	public static class ConfiguracionPruebasLocal{
+		@Bean(name = "beanGestorDatosTest")
+		IGestorPersistenciaComponentes getGestorPersistenciaLocal() {
+			return new GestorPersisLocal();
+		}
+	}
 }
 
